@@ -1,0 +1,35 @@
+<!--
+ - Created by 256bit.by on 12-Sep-23.
+ -->
+
+<!-- Available Accounts -->
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-tree items={accounts} expanded=true header="Available Accounts" onselect={handleOnSelect}></lightning-tree>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2">
+                <template lwc:if={isInfoShown}>
+                    <div class="slds-text-heading_small slds-text-align_center">Summary</div>
+                    <div class="slds-text-body_regular">Account Info:</div>
+                    <lightning-record-view-form record-id={accountRecordId} object-api-name="Account">
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="Type"></lightning-output-field>
+                        <lightning-output-field field-name="Phone"></lightning-output-field>
+                        <lightning-output-field field-name="Website"></lightning-output-field>
+                    </lightning-record-view-form>
+                    <template lwc:if={isContact}>
+                        <div class="slds-text-body_regular">Contact Info:</div>
+                        <lightning-record-view-form record-id={contactRecordId} object-api-name="Contact">
+                            <lightning-output-field field-name="Name"></lightning-output-field>
+                            <lightning-output-field field-name="Phone"></lightning-output-field>
+                            <lightning-output-field field-name="Email"></lightning-output-field>
+                        </lightning-record-view-form>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
