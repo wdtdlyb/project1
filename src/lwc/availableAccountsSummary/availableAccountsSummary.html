@@ -1,0 +1,56 @@
+<template>
+    <div class="slds-text-heading_small slds-text-align_center slds-p-bottom_medium">
+        <b>Summary</b>
+    </div>
+    <div class="slds-text-body_regular">
+        <b>Account Info</b>
+    </div>
+    <lightning-record-view-form record-id={_accountId} object-api-name="Account">
+        <div class="slds-p-bottom_medium">
+            <div class="slds-grid slds-gutters">
+                <span class="slds-col slds-size_1-of-2 fieldLabel">Account Name</span>
+                <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                        field-name="Name"></lightning-output-field>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <span class="slds-col slds-size_1-of-2 fieldLabel">Type</span>
+                <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                        field-name="Type"></lightning-output-field>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <span class="slds-col slds-size_1-of-2 fieldLabel">Phone</span>
+                <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                        field-name="Phone"></lightning-output-field>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <span class="slds-col slds-size_1-of-2 fieldLabel">Website</span>
+                <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                        field-name="Website"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-record-view-form>
+    <template lwc:if={isContact}>
+        <div class="slds-text-body_regular">
+            <b>Contact Info</b>
+        </div>
+        <lightning-record-view-form record-id={_contactId} object-api-name="Contact">
+            <div>
+                <div class="slds-grid slds-gutters">
+                    <span class="slds-col slds-size_1-of-2 fieldLabel">Contact Name</span>
+                    <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                            field-name="Name"></lightning-output-field>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <span class="slds-col slds-size_1-of-2 fieldLabel">Phone</span>
+                    <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                            field-name="Phone"></lightning-output-field>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <span class="slds-col slds-size_1-of-2 fieldLabel">Email</span>
+                    <lightning-output-field class="slds-col slds-size_1-of-2" variant="label-hidden"
+                                            field-name="Email"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+    </template>
+</template>

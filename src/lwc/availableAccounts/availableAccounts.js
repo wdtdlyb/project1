@@ -4,36 +4,34 @@ import getAvailableAccounts from "@salesforce/apex/AvailableAccountsController.g
 import {ShowToastEvent} from "lightning/platformShowToastEvent";
 
 export default class AvailableAccounts extends LightningElement {
-    @track accounts;
-    @track error;
-    @track contactRecordId;
-    @track accountRecordId;
-    @track isInfoShown = false;
-    @track isContact = false;
+    accounts;
+    error;
+    contactRecordId;
+    accountRecordId;
+    isInfoShown = false;
+    isContact = false;
 
     @wire(getAvailableAccounts)
-    wireAvailableAccounts({error, data}){
-        if(data){
+    wireAvailableAccounts({error, data}) {
+        if (data) {
             this.accounts = data;
-        }
-        else{
+        } else {
             this.error = error;
             this.showErrorToast();
         }
     }
 
-    handleOnSelect(event){
+    handleOnSelect(event) {
         this.isInfoShown = true;
 
-        if(event.detail.name.charAt(2) === '1'){
+        if (this.accounts.some(account => account.name === event.detail.name)) {
             this.isContact = false;
             this.accountRecordId = event.detail.name;
-        }
-        else if(event.detail.name.charAt(2) === '3'){
+        } else {
             this.isContact = true;
             this.contactRecordId = event.detail.name;
             this.accountRecordId = this.accounts.find(wrapper => wrapper.items.find(item => item.name === this.contactRecordId)).name;
-        } 
+        }
     }
 
     showErrorToast() {

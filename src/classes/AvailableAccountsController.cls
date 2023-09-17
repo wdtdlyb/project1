@@ -3,24 +3,17 @@ public with sharing class AvailableAccountsController {
     public static List<ItemWrapper> getAvailableAccounts(){
         List<ItemWrapper> wrappers = new List<ItemWrapper>();
 
-        List<Account> accountsWithContacts = [SELECT Id, Name, (SELECT Id, Name FROM Contacts) FROM Account];
+        List<Account> accountsWithContacts = [SELECT Id, Name, (SELECT Id, Name FROM Contacts) FROM Account LIMIT 100];
 
         for(Account account : accountsWithContacts){
             List<ItemWrapper> contactWrappers = new List<ItemWrapper>();
 
             for(Contact contact : account.Contacts){
-                ItemWrapper contactWrapper = new ItemWrapper();
-                contactWrapper.name = contact.Id;
-                contactWrapper.label = contact.Name;
-
+                ItemWrapper contactWrapper = new ItemWrapper(contact.Id, contact.Name, null);
                 contactWrappers.add(contactWrapper);
             }
 
-            ItemWrapper accountWrapper = new ItemWrapper();
-            accountWrapper.name = account.Id;
-            accountWrapper.label = account.Name;
-            accountWrapper.items = contactWrappers;
-
+            ItemWrapper accountWrapper = new ItemWrapper(account.Id, account.Name, contactWrappers);
             wrappers.add(accountWrapper);
         }
 
@@ -34,5 +27,11 @@ public with sharing class AvailableAccountsController {
         public String label{get;set;}
         @AuraEnabled
         public List<ItemWrapper> items{get;set;}
+
+        public ItemWrapper(String name, String label, List<ItemWrapper> items){
+            this.name = name;
+            this.label = label;
+            this.items = items;
+        }
     }
 }
