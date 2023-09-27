@@ -1,8 +1,3 @@
-<!--
- - Created by 256bit.by on 12-Sep-23.
- -->
-
-<!-- Available Accounts -->
 <template>
     <lightning-card>
         <div class="slds-grid slds-gutters">
@@ -10,8 +5,10 @@
                 <div class="slds-text-heading_small slds-text-align_center">
                     <b>Available Accounts</b>
                 </div>
-                <lightning-tree class="slds-col slds-size_1-of-2" items={accounts}
-                                onselect={handleOnSelect}></lightning-tree>
+                <div>
+                    <lightning-tree class="slds-col slds-size_1-of-2" items={accounts}
+                                    onselect={handleOnSelect}></lightning-tree>
+                </div>
             </div>
 
             <div class="slds-col slds-size_1-of-2">

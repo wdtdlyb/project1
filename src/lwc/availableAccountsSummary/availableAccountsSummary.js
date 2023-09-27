@@ -4,6 +4,8 @@ export default class AvailableAccountsSummary extends LightningElement {
     @api isContact;
 
     _accountId
+    _contactId
+
     @api
     set accountId(value) {
         this._accountId = value;
@@ -12,7 +14,6 @@ export default class AvailableAccountsSummary extends LightningElement {
         return this._accountId;
     }
 
-    _contactId
     @api
     set contactId(value) {
         this._contactId = value;
